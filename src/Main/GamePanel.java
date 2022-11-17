@@ -6,23 +6,33 @@ import java.util.*;
 import javax.swing.JPanel;
 
 import Robo.Player;
+import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
 	final int originalTileSize = 16; // 16X16 Title
 	final int scale = 3;
 	
 	public final int tileSize = originalTileSize * scale;
-	final int maxScreenCol = 16;
-	final int maxScreenRow = 12;
-	final int screenWidth = tileSize * maxScreenCol;
-	final int screenHeight = tileSize * maxScreenRow;
+	public final int maxScreenCol = 16;
+	public final int maxScreenRow = 12;
+	public final int screenWidth = tileSize * maxScreenCol;
+	public final int screenHeight = tileSize * maxScreenRow;
+	
+	//make world move
+	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 50;
+	public final int worldWidth = tileSize * maxWorldCol;
+	public final int worldHeight = tileSize * maxWorldRow;
+	
 	
 	//FPS
 	int fps = 60;
 	
+	TileManager tileM = new TileManager(this);
 	Movement mvm = new Movement();
 	Thread gameThread;
-	Player player = new Player(this, mvm);
+	public CollisionChecker cChecker = new CollisionChecker(this);
+	public Player player = new Player(this, mvm);
 	
 	//where is the players
 	int playersX = 100;
@@ -86,6 +96,8 @@ public class GamePanel extends JPanel implements Runnable{
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
+		// needs to be before the player
+		tileM.draw(g2);
 		
 		player.draw(g2);
 		
