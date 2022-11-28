@@ -16,18 +16,24 @@ public class Player extends Robo{
 	
 	public final int screenX;
 	public final int screenY;
+	public int hasDisk = 0;
 	
 	public Player(GamePanel gp, Movement mvm){
+		
+		super(gp);
 		this.gp = gp;
 		this.mvm = mvm;
 		
 		screenX = gp.screenWidth/2 - (gp.tileSize/2);
 		screenY = gp.screenHeight/2 - (gp.tileSize/2);
 		
-		solidArea = new Rectangle(0, 0, gp.tileSize, gp.tileSize);
+		// making it so the player character doesn't get stuck on stuff
+		solidArea = new Rectangle();
 		
 		solidArea.x = 8;
 		solidArea.y = 16;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 32;
 		solidArea.height = 32;
 		
@@ -83,6 +89,13 @@ public class Player extends Robo{
 		//Add solids Check TILE COLLISION
 		collisionOn = false;
 		gp.cChecker.checkTile(this);
+		//Find objects
+		int objIndex = gp.cChecker.checkObject(this, true);
+		pickUpObject(objIndex); 
+		
+		//npc collision
+		int npcIndex = gp.cChecker.checkTerminal(this, gp.terminal);
+		signOnTerm(npcIndex);
 		
 		// if collision is false player can move through | 
 		if(collisionOn == false) {
@@ -114,6 +127,26 @@ public class Player extends Robo{
 		spriteCounter = 0;
 		}
 		
+	}
+	public void pickUpObject(int i) {
+		// if 999 we didn't touch anything
+		if(i != 999) {
+			String objectName = gp.obj[i].name;
+			
+			switch(objectName) {
+			case "Floppy Disk":
+				hasDisk++;
+				gp.obj[i] = null;
+				gp.ui.showMessage("numJump Downloaded.");
+				break;
+			}
+		}
+	}
+	public void signOnTerm(int i) {
+		if(i != 999) {
+			gp.gameState = gp.atTerminal;
+			System.out.println("Sign onto the terminal.");
+		}
 	}
 		
 	public void draw(Graphics2D g2) {

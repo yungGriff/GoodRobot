@@ -6,6 +6,9 @@ import java.util.*;
 import javax.swing.JPanel;
 
 import Robo.Player;
+import Robo.Robo;
+import Robo.terminal;
+import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -24,15 +27,26 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int worldWidth = tileSize * maxWorldCol;
 	public final int worldHeight = tileSize * maxWorldRow;
 	
+	// stop start
+	public int gameState;
+	public final int playState = 1;
+	public final int pauseState = 2; 
+	public final int atTerminal = 3;
+	
 	
 	//FPS
 	int fps = 60;
 	
 	TileManager tileM = new TileManager(this);
-	Movement mvm = new Movement();
+	Movement mvm = new Movement(this);
 	Thread gameThread;
 	public CollisionChecker cChecker = new CollisionChecker(this);
+	public AssetPlacer aPlacer = new AssetPlacer(this);
+	public UI ui = new UI(this);
 	public Player player = new Player(this, mvm);
+	public SuperObject obj[] = new SuperObject[10];
+	public Robo terminal[] = new Robo[10];
+	
 	
 	//where is the players
 	int playersX = 100;
@@ -48,6 +62,15 @@ public class GamePanel extends JPanel implements Runnable{
 		this.setFocusable(true);
 		
 	}
+	
+	public void setupGame() {
+		
+		aPlacer.setTerminal();
+		aPlacer.setObject();
+		gameState = playState;
+	}
+	
+	
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -62,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
 		//int drawCount = 0;
 		
 		while(gameThread != null) {
-			System.out.println("Game Loop is running.");
+			//System.out.println("Game Loop is running.");
 			update();  
 			
 			//drawCount++;
@@ -89,17 +112,58 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	public void update() {
 		
-		player.update();
+		if(gameState == playState) {
+			//player
+			player.update();
+			//terminal
+			for(int i = 0;  i < terminal.length; i++) {
+				if(terminal[i] != null) {
+					terminal[i].update();
+				}
+			}
+		}
+		if(gameState == pauseState) {
+			//the game doesnt allow you to move the sprite
+		}
 		
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
+		
+		long drawStart = 0;
+		if(mvm.checkDrawTime == true) {
+		drawStart = System.nanoTime();
+		}
+		
 		// needs to be before the player
 		tileM.draw(g2);
 		
+		// objects
+		for(int i = 0; i < obj.length; i++) {
+			if(obj[i] != null) {
+				obj[i].draw(g2, this);
+			}
+		}
+		//terminals
+		for(int i = 0; i < terminal.length; i++) {
+			if(terminal[i] != null) {
+				terminal[i].draw(g2);
+			}
+		}
+		
 		player.draw(g2);
+		
+		//ui 
+		ui.draw(g2);
+		if(mvm.checkDrawTime == true) {
+		long drawEnd = System.nanoTime();
+		long passed = drawEnd - drawStart;
+		g2.setColor(getBackground());
+		g2.drawString("Draw Time: " + passed, 10, 400);
+		System.out.println("Draw Time: " + passed);
+		}
 		
 		g2.dispose();
 		
