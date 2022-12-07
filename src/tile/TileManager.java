@@ -52,7 +52,8 @@ public class TileManager {
 		 tile[4].collision = true;
 		 
 		 tile[5] = new Tile();
-		 tile[5].image = ImageIO.read(getClass().getResource("/tiles/terminalRight.png"));
+		 tile[5].image = ImageIO.read(getClass().getResource("/tiles/outsideLOL.png"));
+		 tile[5].collision = true;
 		 
 		 tile[6] = new Tile();
 		 tile[6].image = ImageIO.read(getClass().getResource("/tiles/sandPH.png"));
@@ -67,6 +68,9 @@ public class TileManager {
 		 
 		 tile[9] = new Tile();
 		 tile[9].image = ImageIO.read(getClass().getResource("/tiles/floppyDiskKey.png"));
+		 
+		 
+		 
 		 
 	 }catch(IOException e) {
 		 e.printStackTrace();

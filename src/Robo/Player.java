@@ -41,6 +41,7 @@ public class Player extends Robo{
 		getPlayerImage();
 	}
 	public void setDefaultValues() {
+		//player character
 		worldX = gp.tileSize * 23;
 		worldY = gp.tileSize * 21;
 		speed = 4;
@@ -145,6 +146,7 @@ public class Player extends Robo{
 	public void signOnTerm(int i) {
 		if(i != 999) {
 			gp.gameState = gp.atTerminal;
+			gp.terminal[i].AIfeed();
 			System.out.println("Sign onto the terminal.");
 		}
 	}

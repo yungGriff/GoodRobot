@@ -21,12 +21,16 @@ public class Robo {
 	public int solidAreaDefaultX, solidAreaDefaultY;
 	public boolean collisionOn = false;
 	public int animationLock = 0;
+	String termMessage[] = new String[20];
 	
 	
 	public Robo(GamePanel gp) {
 		this.gp = gp;
 	}
 	public void setAction() {}
+	public void AIfeed() {
+		
+	}
 	public void update() {
 		
 		setAction();

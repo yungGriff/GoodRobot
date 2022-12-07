@@ -12,6 +12,8 @@ import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
+	
+	// setting the screen size
 	final int originalTileSize = 16; // 16X16 Title
 	final int scale = 3;
 	
@@ -29,9 +31,14 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	// stop start
 	public int gameState;
+	public final int titleScreen = 0;
 	public final int playState = 1;
 	public final int pauseState = 2; 
 	public final int atTerminal = 3;
+	public final int listCommands = 4;
+	public final int numJumpState = 5;
+	public final int LabInvestState = 6;
+	public final int runDoomState = 7;
 	
 	
 	//FPS
@@ -67,11 +74,12 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		aPlacer.setTerminal();
 		aPlacer.setObject();
-		gameState = playState;
+		gameState = titleScreen;
 	}
 	
 	
 	public void startGameThread() {
+		//instantiate a thread calls run method
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
@@ -84,6 +92,7 @@ public class GamePanel extends JPanel implements Runnable{
 		//long timer = 0;
 		//int drawCount = 0;
 		
+		// while game thread exists run the game loop
 		while(gameThread != null) {
 			//System.out.println("Game Loop is running.");
 			update();  
@@ -137,7 +146,13 @@ public class GamePanel extends JPanel implements Runnable{
 		drawStart = System.nanoTime();
 		}
 		
-		// needs to be before the player
+		//user log on
+		if(gameState == titleScreen) {
+			ui.draw(g2);
+		}
+		else {
+		
+		//needs to be before the player
 		tileM.draw(g2);
 		
 		// objects
@@ -168,5 +183,6 @@ public class GamePanel extends JPanel implements Runnable{
 		g2.dispose();
 		
 		
+	}
 	}
 }

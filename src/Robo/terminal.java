@@ -14,6 +14,8 @@ public class terminal extends Robo{
 		direction = "down";
 		speed = 1;
 		terminalImage();
+		setTermMessage();
+		
 	}
 	public void terminalImage() {
 		try {
@@ -25,6 +27,13 @@ public class terminal extends Robo{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void setTermMessage() {
+		termMessage[0] = "Terminal [Version 1.0]";
+		termMessage[1] = "!help or !listcommands";
+		termMessage[2] = "!help or !listcommands";
+		termMessage[3] = "!help or !listcommands";
 	}
 	public void setAction() {
 		
@@ -48,6 +57,10 @@ public class terminal extends Robo{
 	}
 		animationLock = 0;
 	}
+	public void AIfeed() {
+		gp.ui.message = termMessage[0];
 
 	}
+	
+}
 
