@@ -5,11 +5,14 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 import object.OBJ_Disk;
 
@@ -119,16 +122,25 @@ public class UI {
 		
 	}
 	public void drawnumJumpScreen() {
+		BufferedImage numJump = null;
+		try {
+			numJump = ImageIO.read(getClass().getResource("/tiles/numJumpDemo.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		int x = gp.tileSize;
 		int y = gp.tileSize;
 		int width = gp.screenWidth - (gp.tileSize*2);
 		int height = gp.screenHeight - (gp.tileSize*2);
-		Color color = new Color(255, 255, 255);
+		Color color = new Color(255, 246, 181);
+		g2.setColor(color);
+		g2.fillRect(0,0, gp.screenWidth, gp.screenHeight);
 		drawTerminalWindow(x, y, width, height);
-		
-		
+		g2.drawImage(numJump, x, y, width, height, null);
 	}
-	
+
 	public void drawTitleScreen() {
 		// background color for title screen
 		g2.setColor(new Color(0, 204, 204));

@@ -24,6 +24,11 @@ public class AssetPlacer {
 		gp.obj[1].worldY = 10 * gp.tileSize;
 		
 		
+		gp.obj[2] = new OBJ_Disk();
+		gp.obj[2].worldX = 25 * gp.tileSize;
+		gp.obj[2].worldY = 25 * gp.tileSize;
+		
+		
 	//	gp.obj[2] = new OBJ_Terminal();
 	//	gp.obj[2].worldX = 6 * gp.tileSize;
 	//	gp.obj[2].worldY = 3 * gp.tileSize;
@@ -38,10 +43,11 @@ public class AssetPlacer {
 		gp.terminal[0].worldY = 3 *gp.tileSize;
 		
 		//test terminal
+		///*
 		gp.terminal[1] = new terminal(gp);
 		gp.terminal[1].worldX = 20 * gp.tileSize;
 		gp.terminal[1].worldY = 20 * gp.tileSize;
-		
+		//*/
 		//bot terminal
 		
 		gp.terminal[2] = new terminal(gp);
