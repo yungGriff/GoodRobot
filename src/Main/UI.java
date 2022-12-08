@@ -149,7 +149,7 @@ public class UI {
 		
 		// Good Robot !
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,72F));
-		String text = "Good Robot![NNYF]";
+		String text = "Good Robot!";
 		int x = getXforCenteredText(text);
 		int y = gp.tileSize * 3;
 		
