@@ -19,6 +19,8 @@ Highlight the key features of your game. For example:
 - Collect floppy disks to unlock new programs.
 - Interact with terminals to load and execute programs.
 - Engage in challenging levels with increasing difficulty.
+  
+![DoomFloppy](https://github.com/yungGriff/GoodRobot/assets/57887563/6ef2e2e9-5770-4740-aa93-9d7464516df7)
 
 ## Installation
 Provide step-by-step instructions on how to install and run the game. Include any dependencies or prerequisites.
@@ -27,8 +29,14 @@ Provide step-by-step instructions on how to install and run the game. Include an
 Explain the game controls and objectives. You can use gifs here to visually demonstrate gameplay. For instance:
 ![Robot Collecting Disk](url-to-your-first-gif.gif)
 *Caption: The blue robot collecting a floppy disk.*
+![movement](https://github.com/yungGriff/GoodRobot/assets/57887563/7a1060d8-3b20-4e30-9db1-fc93fd4feba2)
+
+![InteractWObjects](https://github.com/yungGriff/GoodRobot/assets/57887563/46a11051-ea1d-466e-80c2-99d41dcbcab4)
+
 
 ![Loading Program](url-to-your-second-gif.gif)
-*Caption: Loading a new program at the terminal.*
+
+*Caption:![terminalScreen](https://github.com/yungGriff/GoodRobot/assets/57887563/f0221c6f-48b8-46e8-8318-e15b5cc59867)
+ Loading a new program at the terminal.*
 
 
