@@ -8,8 +8,7 @@ Welcome to the Good Robot Java Game! This project is a senior project where you 
 3. [Installation](#installation)
 4. [How to Play](#how-to-play)
 5. [Screenshots](#screenshots)
-6. [Contributing](#contributing)
-7. [License](#license)
+
 
 ## Introduction
 In the heart of this pixelated adventure, you control a vibrant blue robot on a mission to collect floppy disks and load new programs at terminals. Beyond the gaming experience lies a long-term goal: to transform this platform into an innovative interface that blends the worlds of homework and entertainment.
