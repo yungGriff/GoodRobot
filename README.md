@@ -26,6 +26,8 @@ Highlight the key features of your game. For example:
 ## Installation
 
 ## How to Play
+- Simple W A S D movement.
+- Interaction with items occurs upon collision.
 ![Robot Collecting Disk](url-to-your-first-gif.gif)
 
 ![movement](https://github.com/yungGriff/GoodRobot/assets/57887563/7a1060d8-3b20-4e30-9db1-fc93fd4feba2)
